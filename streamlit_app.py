@@ -21,3 +21,15 @@ lr.fit(X_train, y_train)
 # Applying the model to make a prediction
 y_lr_train_pred = lr.predict(X_train)
 y_lr_test_pred = lr.predict(X_test)
+
+with st.status("Building model...", expanded=True) as status:
+    st.write("Searching for data...")
+    time.sleep(2)
+  
+    st.write("Found URL.")
+    time.sleep(1)
+  
+    st.write("Downloading data...")
+    time.sleep(1)
+  
+    status.update(label="Model built!", state="complete", expanded=False)
