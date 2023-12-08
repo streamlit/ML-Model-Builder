@@ -25,7 +25,7 @@ with st.status("Building model...", expanded=True) as status:
     y_lr_test_pred = lr.predict(X_test)
     
     # Evaluating performance metrics
-    st.write("Evaluating performance metrics")
+    st.write("Evaluating performance metrics...")
     lr_train_mse = mean_squared_error(y_train, y_lr_train_pred)
     lr_train_r2 = r2_score(y_train, y_lr_train_pred)
 
