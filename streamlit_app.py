@@ -24,12 +24,17 @@ with st.status("Building model...", expanded=True) as status:
     y_lr_train_pred = lr.predict(X_train)
     y_lr_test_pred = lr.predict(X_test)
     
-    # Evaluating performance metrics
     st.write("Evaluating performance metrics...")
     lr_train_mse = mean_squared_error(y_train, y_lr_train_pred)
     lr_train_r2 = r2_score(y_train, y_lr_train_pred)
     lr_test_mse = mean_squared_error(y_test, y_lr_test_pred)
     lr_test_r2 = r2_score(y_test, y_lr_test_pred)
+
+    st.write("Displaying performance metrics")
+    lr_results = pd.DataFrame(['Linear regression', lr_train_mse, lr_train_r2, lr_test_mse, lr_test_r2]).transpose()
+    lr_results.columns = ['Method', 'Training MSE', 'Training R2', 'Test MSE', 'Test R2']
     
     status.update(label="Model built!", state="complete", expanded=False)
 
+
+st.dataframe(lr_results)
