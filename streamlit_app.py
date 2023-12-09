@@ -5,6 +5,31 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 import altair as alt
 
+with st.sidebar:
+    st.header('1. Upload your CSV data'):
+    uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
+    st.sidebar.markdown("""
+    [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
+    """)
+
+    # Parameter settings
+    st.header('2. Set Parameters'):
+    split_size = st.slider('Data split ratio (% for Training Set)', 10, 90, 80, 5)
+
+    st.subheader('2.1. Learning Parameters'):
+    parameter_n_estimators = st.slider('Number of estimators (n_estimators)', 0, 1000, 100, 100)
+    parameter_max_features = st.select_slider('Max features (max_features)', options=['auto', 'sqrt', 'log2'])
+    parameter_min_samples_split = st.slider('Minimum number of samples required to split an internal node (min_samples_split)', 1, 10, 2, 1)
+    parameter_min_samples_leaf = st.slider('Minimum number of samples required to be at a leaf node (min_samples_leaf)', 1, 10, 2, 1)
+
+    st.subheader('2.2. General Parameters'):
+    parameter_random_state = st.slider('Seed number (random_state)', 0, 1000, 42, 1)
+    parameter_criterion = st.select_slider('Performance measure (criterion)', options=['mse', 'mae'])
+    parameter_bootstrap = st.select_slider('Bootstrap samples when building trees (bootstrap)', options=[True, False])
+    parameter_oob_score = st.select_slider('Whether to use out-of-bag samples to estimate the R^2 on unseen data (oob_score)', options=[False, True])
+    parameter_n_jobs = st.select_slider('Number of jobs to run in parallel (n_jobs)', options=[1, -1])
+
+
 with st.status("Building model ...", expanded=True) as status:
     st.write("Loading data ...")
     df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
