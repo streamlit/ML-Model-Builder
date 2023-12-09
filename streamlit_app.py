@@ -68,14 +68,14 @@ with st.status("Building model ...", expanded=True) as status:
     test_r2 = r2_score(y_test, y_test_pred)
 
     st.write("Displaying performance metrics ...")
+    parameter_criterion_string = ' '.join([x.capitalize() for x in parameter_criterion.split('_')])
+    
     rf_results = pd.DataFrame(['Random forest', train_mse, train_r2, test_mse, test_r2]).transpose()
-    rf_results.columns = ['Method', f'Training {parameter_criterion}', 'Training R2', f'Test {parameter_criterion}', 'Test R2']
+    rf_results.columns = ['Method', f'Training {parameter_criterion_string}', 'Training R2', f'Test {parameter_criterion_string}', 'Test R2']
     
     status.update(label="Model built!", state="complete", expanded=False)
 
 
 st.dataframe(rf_results)
 
-a = [x.capitalize() for x in parameter_criterion.split('_')]
 
-st.write(' '.join(a))
