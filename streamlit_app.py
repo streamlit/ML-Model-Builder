@@ -25,7 +25,7 @@ with st.sidebar:
 
     st.subheader('2.2. General Parameters')
     parameter_random_state = st.slider('Seed number (random_state)', 0, 1000, 42, 1)
-    parameter_criterion = st.select_slider('Performance measure (criterion)', options=['mse', 'mae'])
+    parameter_criterion = st.select_slider('Performance measure (criterion)', options=['squared_error', 'absolute_error', 'friedman_mse', 'poisson'])
     parameter_bootstrap = st.select_slider('Bootstrap samples when building trees (bootstrap)', options=[True, False])
     parameter_oob_score = st.select_slider('Whether to use out-of-bag samples to estimate the R^2 on unseen data (oob_score)', options=[False, True])
     parameter_n_jobs = st.select_slider('Number of jobs to run in parallel (n_jobs)', options=[1, -1])
