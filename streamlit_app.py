@@ -40,7 +40,7 @@ with st.status("Building model ...", expanded=True) as status:
     y = df['logS']
     
     st.write("Splitting data ...")
-    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=(100-split_size)/100, random_state=parameter_random_state)
+    X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size=(100-split_size)/100, random_state=parameter_random_state)
 
     st.write("Training the model ...")
     rf = RandomForestRegressor(
