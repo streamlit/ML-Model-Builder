@@ -76,5 +76,5 @@ with st.status("Building model ...", expanded=True) as status:
 
 st.dataframe(rf_results)
 
-a = parameter_criterion.split('_')
+a = [capitalize(x) for x in parameter_criterion.split('_')]
 st.write(a)
