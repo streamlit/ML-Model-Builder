@@ -19,7 +19,7 @@ with st.sidebar:
 
     st.subheader('2.1. Learning Parameters')
     parameter_n_estimators = st.slider('Number of estimators (n_estimators)', 0, 1000, 100, 100)
-    parameter_max_features = st.select_slider('Max features (max_features)', options=['auto', 'sqrt', 'log2'])
+    parameter_max_features = st.select_slider('Max features (max_features)', options=[None, 'sqrt', 'log2'])
     parameter_min_samples_split = st.slider('Minimum number of samples required to split an internal node (min_samples_split)', 1, 10, 2, 1)
     parameter_min_samples_leaf = st.slider('Minimum number of samples required to be at a leaf node (min_samples_leaf)', 1, 10, 2, 1)
 
