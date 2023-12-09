@@ -1,3 +1,5 @@
+
+
 import streamlit as st
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -73,3 +75,6 @@ with st.status("Building model ...", expanded=True) as status:
 
 
 st.dataframe(rf_results)
+
+a = parameter_criterion.split('_')
+st.write(a)
