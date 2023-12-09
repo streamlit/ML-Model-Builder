@@ -76,6 +76,7 @@ with st.status("Building model ...", expanded=True) as status:
     
     status.update(label="Model built!", state="complete", expanded=False)
 
+st.metric(label="No. of samples", value=X.shape[0], delta="")
 st.metric(label="No. of X variables", value=X.shape[1], delta="")
 st.dataframe(rf_results)
 
