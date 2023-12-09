@@ -13,7 +13,7 @@ with st.sidebar:
     """)
 
     # Parameter settings
-    st.header('2. Set Parameters'):
+    st.header('2. Set Parameters')
     split_size = st.slider('Data split ratio (% for Training Set)', 10, 90, 80, 5)
 
     st.subheader('2.1. Learning Parameters')
