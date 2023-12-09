@@ -43,12 +43,13 @@ with st.status("Building model ...", expanded=True) as status:
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=(100-split_size)/100, random_state=parameter_random_state)
 
     st.write("Training the model ...")
-    rf = RandomForestRegressor(n_estimators=parameter_n_estimators,
-        random_state=parameter_random_state,
+    rf = RandomForestRegressor(
+        n_estimators=parameter_n_estimators,
         max_features=parameter_max_features,
-        criterion=parameter_criterion,
         min_samples_split=parameter_min_samples_split,
         min_samples_leaf=parameter_min_samples_leaf,
+        random_state=parameter_random_state,
+        criterion=parameter_criterion,
         bootstrap=parameter_bootstrap,
         oob_score=parameter_oob_score,
         n_jobs=parameter_n_jobs)
