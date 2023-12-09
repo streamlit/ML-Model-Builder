@@ -76,5 +76,5 @@ with st.status("Building model ...", expanded=True) as status:
 
 st.dataframe(rf_results)
 
-a = [' '.join(y) for y in [x.capitalize() for x in parameter_criterion.split('_')] ]
+a = [' '.join(x.capitalize()) for x in parameter_criterion.split('_')]
 st.write(a)
