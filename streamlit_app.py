@@ -6,6 +6,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 import altair as alt
 
 with st.sidebar:
+    st.title('🤖 Machine Learning App V2')
     st.header('1. Upload your CSV data')
     uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
     st.sidebar.markdown("""
@@ -39,10 +40,18 @@ with st.status("Building model ...", expanded=True) as status:
     y = df['logS']
     
     st.write("Splitting data ...")
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=100)
+    X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=(100-split_size)/100, random_state=parameter_random_state)
 
     st.write("Training the model ...")
-    rf = RandomForestRegressor(max_depth=2, random_state=100)
+    rf = RandomForestRegressor(n_estimators=parameter_n_estimators,
+        random_state=parameter_random_state,
+        max_features=parameter_max_features,
+        criterion=parameter_criterion,
+        min_samples_split=parameter_min_samples_split,
+        min_samples_leaf=parameter_min_samples_leaf,
+        bootstrap=parameter_bootstrap,
+        oob_score=parameter_oob_score,
+        n_jobs=parameter_n_jobs)
     rf.fit(X_train, y_train)
 
     st.write("Applying model to make predictions ...")
