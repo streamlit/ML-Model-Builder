@@ -31,7 +31,7 @@ with st.sidebar:
     parameter_n_jobs = st.select_slider('Number of jobs to run in parallel (n_jobs)', options=[1, -1])
 
 
-with st.status("Building model ...", expanded=True) as status:
+with st.status("Running ...", expanded=True) as status:
     st.write("Loading data ...")
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
@@ -77,7 +77,7 @@ with st.status("Building model ...", expanded=True) as status:
     else:
         st.warning('👈 Upload a CSV file to get started!')
         
-    status.update(label="Model built!", state="complete", expanded=False)
+    status.update(label="Process completed!", state="complete", expanded=False)
 
 
 if uploaded_file is not None:
