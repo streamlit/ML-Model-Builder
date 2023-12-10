@@ -109,7 +109,7 @@ with st.status("Running ...", expanded=True) as status:
     else:
         st.warning('👈 Upload a CSV file to get started!')
         
-    status.update(label="Status", state="complete", expanded=True)
+    status.update(label="Status", state="complete", expanded=False)
 
 
 if uploaded_file or example_data:
