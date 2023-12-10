@@ -125,8 +125,6 @@ if uploaded_file or example_data:
     col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
     
 
-
-    st.header('Model performance', divider='rainbow')
     performance_col = st.columns(2)
     
     importances = rf.feature_importances_
@@ -141,8 +139,10 @@ if uploaded_file or example_data:
     ).properties(height=250)
     
     with performance_col[0]:
+        st.header('Model performance', divider='rainbow')
         st.dataframe(rf_results.T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
     
     with performance_col[1]:
+        st.header('Feature importance', divider='rainbow')
         st.altair_chart(bars, theme='streamlit')
 
