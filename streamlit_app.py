@@ -47,7 +47,8 @@ if example_data:
 
 
 with st.status("Running ...", expanded=True) as status:
-    st.warning('👈 Upload a CSV file to get started!')
+    if not uploaded_file or example_data:
+        st.warning('👈 Upload a CSV file to get started!')
     if uploaded_file or example_data: 
         
         st.write("Loading data ...")
