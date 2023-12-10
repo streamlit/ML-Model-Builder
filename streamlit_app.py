@@ -120,10 +120,9 @@ if uploaded_file or example_data:
     col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
     
 
-performance_col = st.columns(2)
-
 
 st.header('Model performance', divider='rainbow')
+performance_col = st.columns(2)
 
 importances = rf.feature_importances_
 feature_names = list(X.columns)
