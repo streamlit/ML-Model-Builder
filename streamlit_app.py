@@ -9,6 +9,7 @@ with st.sidebar:
     st.title('🤖 Machine Learning App v2')
     st.header('1. Upload your CSV data')
     uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
+    example_data = st.toggle('Load example data')
     st.sidebar.markdown("""
     [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
     """)
@@ -40,7 +41,7 @@ with st.status("Running ...", expanded=True) as status:
         df = pd.read_csv(uploaded_file)
     # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
-    example_data = st.toggle('Load example data')
+    
     if example_data:
         df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
