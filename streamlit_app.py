@@ -86,10 +86,10 @@ with st.status("Running ...", expanded=True) as status:
     else:
         st.warning('👈 Upload a CSV file to get started!')
         
-    status.update(label="Process completed!", state="complete", expanded=False)
+    status.update(label="Process completed!", state="complete", expanded=True)
 
 
-if uploaded_file is not None:
+if uploaded_file or example_data:
     col[0].metric(label="No. of samples", value=X.shape[0], delta="")
     col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
     
