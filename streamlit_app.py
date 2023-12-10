@@ -1,5 +1,3 @@
-
-
 import streamlit as st
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -40,7 +38,7 @@ with st.status("Building model ...", expanded=True) as status:
     # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
     else:
-        st.status('👈 Upload a CSV file to get started!')
+        st.warning('👈 Upload a CSV file to get started!')
     
     st.write("Preparing data ...")
     X = df.drop('logS', axis=1)
