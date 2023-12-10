@@ -121,7 +121,7 @@ if uploaded_file or example_data:
     
     #with placeholder2:
 
-performance_col = st.columns((2,1))
+performance_col = st.columns((3,2))
 
 st.header('Model performance', divider='rainbow')
 
