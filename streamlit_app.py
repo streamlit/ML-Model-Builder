@@ -111,6 +111,7 @@ if uploaded_file or example_data:
     col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
     
     with placeholder2:
+        st.header('Model performance', divider='rainbow')
         st.dataframe(rf_results)
 
 
