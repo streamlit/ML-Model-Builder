@@ -42,6 +42,9 @@ if uploaded_file is not None:
 if example_data:
     df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
+else:
+    st.warning('👈 Upload a CSV file to get started!')
+
 
 with st.status("Running ...", expanded=True) as status:
     st.write("Loading data ...")
@@ -91,8 +94,8 @@ with st.status("Running ...", expanded=True) as status:
         rf_results = pd.DataFrame(['Random forest', train_mse, train_r2, test_mse, test_r2]).transpose()
         rf_results.columns = ['Method', f'Training {parameter_criterion_string}', 'Training R2', f'Test {parameter_criterion_string}', 'Test R2']
 
-    else:
-        st.warning('👈 Upload a CSV file to get started!')
+    #else:
+        #st.warning('👈 Upload a CSV file to get started!')
         
     status.update(label="Process completed!", state="complete", expanded=True)
 
