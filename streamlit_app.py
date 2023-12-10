@@ -103,7 +103,10 @@ with st.status("Running ...", expanded=True) as status:
         #    parameter_criterion_string = parameter_criterion_string.replace('Mse', 'MSE')
         rf_results = pd.DataFrame(['Random forest', train_mse, train_r2, test_mse, test_r2]).transpose()
         rf_results.columns = ['Method', f'Training {parameter_criterion_string}', 'Training R2', f'Test {parameter_criterion_string}', 'Test R2']
-
+        # Convert objects to numerics
+        for col in rf_results.columns:
+            rf_results[col] = pd.to_numeric(rf_results[col], errors='ignore')
+    
     else:
         st.warning('👈 Upload a CSV file to get started!')
         
@@ -136,7 +139,7 @@ bars = alt.Chart(df_importance).mark_bar(size=40).encode(
 ).properties(height=250)
 
 with performance_col[0]:
-    st.dataframe(rf_results.T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
+    st.dataframe(rf_results.round(3).T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
 
 with performance_col[1]:
     st.altair_chart(bars, theme='streamlit')
