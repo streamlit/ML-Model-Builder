@@ -31,6 +31,9 @@ with st.sidebar:
     parameter_n_jobs = st.select_slider('Number of jobs to run in parallel (n_jobs)', options=[1, -1])
 
 
+col = st.columns(5)
+
+
 with st.status("Running ...", expanded=True) as status:
     st.write("Loading data ...")
     if uploaded_file is not None:
@@ -81,7 +84,6 @@ with st.status("Running ...", expanded=True) as status:
 
 
 if uploaded_file is not None:
-    col = st.columns(5)
     col[0].metric(label="No. of samples", value=X.shape[0], delta="")
     col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
     
