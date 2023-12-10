@@ -69,8 +69,8 @@ with st.status("Building model ...", expanded=True) as status:
 
     st.write("Displaying performance metrics ...")
     parameter_criterion_string = ' '.join([x.capitalize() for x in parameter_criterion.split('_')])
-    if 'Mse' in parameter_criterion_string:
-        parameter_criterion_string = parameter_criterion_string.replace('Mse', 'MSE')
+    #if 'Mse' in parameter_criterion_string:
+    #    parameter_criterion_string = parameter_criterion_string.replace('Mse', 'MSE')
     rf_results = pd.DataFrame(['Random forest', train_mse, train_r2, test_mse, test_r2]).transpose()
     rf_results.columns = ['Method', f'Training {parameter_criterion_string}', 'Training R2', f'Test {parameter_criterion_string}', 'Test R2']
 
