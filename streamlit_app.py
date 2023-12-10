@@ -47,7 +47,9 @@ else:
 
 
 with st.status("Running ...", expanded=True) as status:
-    st.write("Loading data ...")
+    if uploaded_file or example_data: 
+        
+        st.write("Loading data ...")
     #if uploaded_file is not None:
     #    df = pd.read_csv(uploaded_file)
     # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
@@ -56,7 +58,7 @@ with st.status("Running ...", expanded=True) as status:
     #if example_data:
     #    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
-    if uploaded_file or example_data: 
+    #if uploaded_file or example_data: 
         st.write("Preparing data ...")
         X = df.drop('logS', axis=1)
         y = df['logS']
