@@ -126,7 +126,7 @@ performance_col = st.columns(2)
 st.header('Model performance', divider='rainbow')
 
 with performance_col[0]:
-    st.dataframe(rf_results.T..reset_index().rename(columns={'index': 'feature', 0: 'value'}))
+    st.dataframe(rf_results.T.reset_index().rename(columns={'index': 'feature', 0: 'value'}))
 
 importances = rf.feature_importances_
 # std = np.std([tree.feature_importances_ for tree in rf.estimators_], axis=0)
