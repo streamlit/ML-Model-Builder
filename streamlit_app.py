@@ -110,8 +110,8 @@ if uploaded_file or example_data:
     col[2].metric(label="No. of Training samples", value=X_train.shape[0], delta="")
     col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
     
-    with placeholder2:
-        st.header('Model performance', divider='rainbow')
-        st.dataframe(rf_results)
+    #with placeholder2:
+st.header('Model performance', divider='rainbow')
+st.dataframe(rf_results)
 
 
