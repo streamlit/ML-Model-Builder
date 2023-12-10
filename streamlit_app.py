@@ -50,9 +50,6 @@ if uploaded_file is not None:
 if example_data:
     df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
-#else:
-    #st.warning('👈 Upload a CSV file to get started!')
-
 
 with st.status("Running ...", expanded=True) as status:
     if uploaded_file or example_data: 
