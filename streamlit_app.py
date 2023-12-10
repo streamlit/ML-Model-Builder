@@ -32,7 +32,7 @@ with st.sidebar:
     parameter_n_jobs = st.select_slider('Number of jobs to run in parallel (n_jobs)', options=[1, -1])
 
 placeholder1 = st.empty()
-col = st.columns(5)
+#col = st.columns(5)
 placeholder2 = st.empty()
 
 
@@ -103,8 +103,9 @@ with st.status("Running ...", expanded=True) as status:
 
 
 if uploaded_file or example_data:
-    with placeholder1:
-        st.header('Input data', divider='rainbow')
+    #with placeholder1:
+    st.header('Input data', divider='rainbow')
+    col = st.columns(5)
     col[0].metric(label="No. of samples", value=X.shape[0], delta="")
     col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
     col[2].metric(label="No. of Training samples", value=X_train.shape[0], delta="")
