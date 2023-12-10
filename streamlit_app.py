@@ -36,7 +36,8 @@ placeholder = st.empty()
 
 with st.status("Running ...", expanded=True) as status:
     st.write("Loading data ...")
-    if uploaded_file is not None:
+    #if uploaded_file is not None:
+    if not uploaded_file:
         df = pd.read_csv(uploaded_file)
     # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
