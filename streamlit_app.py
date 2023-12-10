@@ -139,7 +139,7 @@ bars = alt.Chart(df_importance).mark_bar(size=40).encode(
 ).properties(height=250)
 
 with performance_col[0]:
-    st.dataframe(rf_results.round(3).T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
+    st.dataframe(rf_results.T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
 
 with performance_col[1]:
     st.altair_chart(bars, theme='streamlit')
