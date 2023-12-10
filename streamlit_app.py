@@ -6,6 +6,13 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 import altair as alt
 
+st.set_page_config(
+    page_title="Machine Learning App v2",
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
 with st.sidebar:
     st.title('🤖 Machine Learning App v2')
     st.header('1. Upload your CSV data')
