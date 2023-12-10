@@ -103,6 +103,7 @@ with st.status("Running ...", expanded=True) as status:
 
 
 if uploaded_file or example_data:
+    st.header('Input data', divider='rainbow')
     col[0].metric(label="No. of samples", value=X.shape[0], delta="")
     col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
     col[2].metric(label="No. of Training samples", value=X_train.shape[0], delta="")
