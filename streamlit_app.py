@@ -35,15 +35,23 @@ with st.sidebar:
 col = st.columns(5)
 placeholder = st.empty()
 
+
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+
+if example_data:
+    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
+
+
 with st.status("Running ...", expanded=True) as status:
     st.write("Loading data ...")
-    if uploaded_file is not None:
-        df = pd.read_csv(uploaded_file)
+    #if uploaded_file is not None:
+    #    df = pd.read_csv(uploaded_file)
     # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
-    
-    if example_data:
-        df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
+
+    #if example_data:
+    #    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
     if uploaded_file or example_data: 
         st.write("Preparing data ...")
