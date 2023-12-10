@@ -103,7 +103,7 @@ with st.status("Running ...", expanded=True) as status:
 
 
 if uploaded_file or example_data:
-    with st.container(border=True):
+    with st.expander('Data Info', expanded=True):
         col[0].metric(label="No. of samples", value=X.shape[0], delta="")
         col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
     
