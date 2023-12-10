@@ -107,7 +107,7 @@ with st.status("Running ...", expanded=True) as status:
         for col in rf_results.columns:
             rf_results[col] = pd.to_numeric(rf_results[col], errors='ignore')
         # Round to 3 digits
-        rf_results.round(3)
+        rf_results = rf_results.round(3)
     
     else:
         st.warning('👈 Upload a CSV file to get started!')
