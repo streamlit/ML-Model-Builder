@@ -103,8 +103,10 @@ with st.status("Running ...", expanded=True) as status:
 
 
 if uploaded_file or example_data:
-    col[0].metric(label="No. of samples", value=X.shape[0], delta="")
-    col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
+    with st.container(border=True):
+        col[0].metric(label="No. of samples", value=X.shape[0], delta="")
+    with st.container(border=True):
+        col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
     
     with placeholder:
         st.dataframe(rf_results)
