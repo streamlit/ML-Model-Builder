@@ -47,8 +47,6 @@ if example_data:
 
 
 with st.status("Running ...", expanded=True) as status:
-    if not uploaded_file or example_data:
-        st.warning('👈 Upload a CSV file to get started!')
     if uploaded_file or example_data: 
         
         st.write("Loading data ...")
@@ -98,8 +96,8 @@ with st.status("Running ...", expanded=True) as status:
         rf_results = pd.DataFrame(['Random forest', train_mse, train_r2, test_mse, test_r2]).transpose()
         rf_results.columns = ['Method', f'Training {parameter_criterion_string}', 'Training R2', f'Test {parameter_criterion_string}', 'Test R2']
 
-    #else:
-        #st.warning('👈 Upload a CSV file to get started!')
+    else:
+        st.warning('👈 Upload a CSV file to get started!')
         
     status.update(label="Status", state="complete", expanded=True)
 
