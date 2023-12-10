@@ -121,19 +121,19 @@ if uploaded_file or example_data:
     
     #with placeholder2:
 
-performance_col = st.columns((3,2))
+performance_col = st.columns(2)
 
 st.header('Model performance', divider='rainbow')
 
 with performance_col[0]:
-    st.dataframe(rf_results)
+    st.dataframe(rf_results.T)
 
 importances = rf.feature_importances_
-std = np.std([tree.feature_importances_ for tree in rf.estimators_], axis=0)
+# std = np.std([tree.feature_importances_ for tree in rf.estimators_], axis=0)
 feature_names = list(X.columns)
-
 forest_importances = pd.Series(importances, index=feature_names)
 df_importance = forest_importances.reset_index().rename(columns={'index': 'feature', 0: 'value'})
+
 bars = alt.Chart(df_importance).mark_bar(size=40).encode(
     x='value:Q',
     #y='feature'
