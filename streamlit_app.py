@@ -10,7 +10,7 @@ import altair as alt
 with st.sidebar:
     st.title('🤖 Machine Learning App v2')
     st.header('1. Upload your CSV data')
-    uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
+    uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
     st.sidebar.markdown("""
     [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
     """)
@@ -35,7 +35,9 @@ with st.sidebar:
 
 with st.status("Building model ...", expanded=True) as status:
     st.write("Loading data ...")
-    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+    # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
     
     st.write("Preparing data ...")
     X = df.drop('logS', axis=1)
