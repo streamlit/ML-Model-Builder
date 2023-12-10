@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
@@ -115,4 +116,16 @@ if uploaded_file or example_data:
 st.header('Model performance', divider='rainbow')
 st.dataframe(rf_results)
 
+importances = rf.feature_importances_
+std = np.std([tree.feature_importances_ for tree in rf.estimators_], axis=0)
+feature_names = list(X.columns)
+
+forest_importances = pd.Series(importances, index=feature_names)
+df_importance = forest_importances.reset_index().rename(columns={'index': 'feature', 0: 'value'})
+bars = alt.Chart(df_importance).mark_bar(size=40).encode(
+    x='value:Q',
+    #y='feature'
+    y=alt.Y('feature:N', sort='-x')
+).properties(height=250)
+st.altair_chart(bars, theme='streamlit')
 
