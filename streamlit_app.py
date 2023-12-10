@@ -32,7 +32,7 @@ with st.sidebar:
 
 
 col = st.columns(5)
-
+placeholder = st.empty()
 
 with st.status("Running ...", expanded=True) as status:
     st.write("Loading data ...")
@@ -87,6 +87,7 @@ if uploaded_file is not None:
     col[0].metric(label="No. of samples", value=X.shape[0], delta="")
     col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
     
-    st.dataframe(rf_results)
+    with placeholder:
+        st.dataframe(rf_results)
 
 
