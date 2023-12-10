@@ -37,9 +37,6 @@ with st.status("Building model ...", expanded=True) as status:
         df = pd.read_csv(uploaded_file)
     # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
-    else:
-        st.warning('👈 Upload a CSV file to get started!')
-    
     st.write("Preparing data ...")
     X = df.drop('logS', axis=1)
     y = df['logS']
@@ -76,7 +73,10 @@ with st.status("Building model ...", expanded=True) as status:
         parameter_criterion_string = parameter_criterion_string.replace('Mse', 'MSE')
     rf_results = pd.DataFrame(['Random forest', train_mse, train_r2, test_mse, test_r2]).transpose()
     rf_results.columns = ['Method', f'Training {parameter_criterion_string}', 'Training R2', f'Test {parameter_criterion_string}', 'Test R2']
-    
+
+    else:
+        st.warning('👈 Upload a CSV file to get started!')
+        
     status.update(label="Model built!", state="complete", expanded=False)
 
 col = st.columns(5)
