@@ -124,23 +124,23 @@ if uploaded_file or example_data:
     
 
 
-st.header('Model performance', divider='rainbow')
-performance_col = st.columns(2)
-
-importances = rf.feature_importances_
-feature_names = list(X.columns)
-forest_importances = pd.Series(importances, index=feature_names)
-df_importance = forest_importances.reset_index().rename(columns={'index': 'feature', 0: 'value'})
-
-bars = alt.Chart(df_importance).mark_bar(size=40).encode(
-    x='value:Q',
-    #y='feature'
-    y=alt.Y('feature:N', sort='-x')
-).properties(height=250)
-
-with performance_col[0]:
-    st.dataframe(rf_results.T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
-
-with performance_col[1]:
-    st.altair_chart(bars, theme='streamlit')
+    st.header('Model performance', divider='rainbow')
+    performance_col = st.columns(2)
+    
+    importances = rf.feature_importances_
+    feature_names = list(X.columns)
+    forest_importances = pd.Series(importances, index=feature_names)
+    df_importance = forest_importances.reset_index().rename(columns={'index': 'feature', 0: 'value'})
+    
+    bars = alt.Chart(df_importance).mark_bar(size=40).encode(
+        x='value:Q',
+        #y='feature'
+        y=alt.Y('feature:N', sort='-x')
+    ).properties(height=250)
+    
+    with performance_col[0]:
+        st.dataframe(rf_results.T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
+    
+    with performance_col[1]:
+        st.altair_chart(bars, theme='streamlit')
 
