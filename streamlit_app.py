@@ -113,8 +113,13 @@ if uploaded_file or example_data:
     col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
     
     #with placeholder2:
+
+performance_col = st.columns((2,1))
+
 st.header('Model performance', divider='rainbow')
-st.dataframe(rf_results)
+
+with performance_col[0]:
+    st.dataframe(rf_results)
 
 importances = rf.feature_importances_
 std = np.std([tree.feature_importances_ for tree in rf.estimators_], axis=0)
@@ -127,5 +132,7 @@ bars = alt.Chart(df_importance).mark_bar(size=40).encode(
     #y='feature'
     y=alt.Y('feature:N', sort='-x')
 ).properties(height=250)
-st.altair_chart(bars, theme='streamlit')
+
+with performance_col[1]:
+    st.altair_chart(bars, theme='streamlit')
 
