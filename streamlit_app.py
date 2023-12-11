@@ -50,67 +50,66 @@ if uploaded_file is not None:
 if example_data:
     df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
-
-with st.status("Running ...", expanded=True) as status:
-    if uploaded_file or example_data: 
-        
-        st.write("Loading data ...")
-    #if uploaded_file is not None:
-    #    df = pd.read_csv(uploaded_file)
-    # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
-
-
-    #if example_data:
-    #    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
-
-    #if uploaded_file or example_data: 
-        st.write("Preparing data ...")
-        X = df.drop('logS', axis=1)
-        y = df['logS']
-        
-        st.write("Splitting data ...")
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=(100-parameter_split_size)/100, random_state=parameter_random_state)
-
-        st.write("Training the model ...")
-        rf = RandomForestRegressor(
-            n_estimators=parameter_n_estimators,
-            max_features=parameter_max_features,
-            min_samples_split=parameter_min_samples_split,
-            min_samples_leaf=parameter_min_samples_leaf,
-            random_state=parameter_random_state,
-            criterion=parameter_criterion,
-            bootstrap=parameter_bootstrap,
-            oob_score=parameter_oob_score,
-            n_jobs=parameter_n_jobs)
-        rf.fit(X_train, y_train)
+if uploaded_file or example_data: 
+    with st.status("Running ...", expanded=True) as status:
     
-        st.write("Applying model to make predictions ...")
-        y_train_pred = rf.predict(X_train)
-        y_test_pred = rf.predict(X_test)
-        
-        st.write("Evaluating performance metrics ...")
-        train_mse = mean_squared_error(y_train, y_train_pred)
-        train_r2 = r2_score(y_train, y_train_pred)
-        test_mse = mean_squared_error(y_test, y_test_pred)
-        test_r2 = r2_score(y_test, y_test_pred)
+            
+            st.write("Loading data ...")
+        #if uploaded_file is not None:
+        #    df = pd.read_csv(uploaded_file)
+        # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
     
-        st.write("Displaying performance metrics ...")
-        parameter_criterion_string = ' '.join([x.capitalize() for x in parameter_criterion.split('_')])
-        #if 'Mse' in parameter_criterion_string:
-        #    parameter_criterion_string = parameter_criterion_string.replace('Mse', 'MSE')
-        rf_results = pd.DataFrame(['Random forest', train_mse, train_r2, test_mse, test_r2]).transpose()
-        rf_results.columns = ['Method', f'Training {parameter_criterion_string}', 'Training R2', f'Test {parameter_criterion_string}', 'Test R2']
-        # Convert objects to numerics
-        for col in rf_results.columns:
-            rf_results[col] = pd.to_numeric(rf_results[col], errors='ignore')
-        # Round to 3 digits
-        rf_results = rf_results.round(3)
     
-    else:
-        st.warning('👈 Upload a CSV file to get started!')
+        #if example_data:
+        #    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
+    
+        #if uploaded_file or example_data: 
+            st.write("Preparing data ...")
+            X = df.drop('logS', axis=1)
+            y = df['logS']
+            
+            st.write("Splitting data ...")
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=(100-parameter_split_size)/100, random_state=parameter_random_state)
+    
+            st.write("Training the model ...")
+            rf = RandomForestRegressor(
+                n_estimators=parameter_n_estimators,
+                max_features=parameter_max_features,
+                min_samples_split=parameter_min_samples_split,
+                min_samples_leaf=parameter_min_samples_leaf,
+                random_state=parameter_random_state,
+                criterion=parameter_criterion,
+                bootstrap=parameter_bootstrap,
+                oob_score=parameter_oob_score,
+                n_jobs=parameter_n_jobs)
+            rf.fit(X_train, y_train)
         
-    status.update(label="Status", state="complete", expanded=False)
+            st.write("Applying model to make predictions ...")
+            y_train_pred = rf.predict(X_train)
+            y_test_pred = rf.predict(X_test)
+            
+            st.write("Evaluating performance metrics ...")
+            train_mse = mean_squared_error(y_train, y_train_pred)
+            train_r2 = r2_score(y_train, y_train_pred)
+            test_mse = mean_squared_error(y_test, y_test_pred)
+            test_r2 = r2_score(y_test, y_test_pred)
+        
+            st.write("Displaying performance metrics ...")
+            parameter_criterion_string = ' '.join([x.capitalize() for x in parameter_criterion.split('_')])
+            #if 'Mse' in parameter_criterion_string:
+            #    parameter_criterion_string = parameter_criterion_string.replace('Mse', 'MSE')
+            rf_results = pd.DataFrame(['Random forest', train_mse, train_r2, test_mse, test_r2]).transpose()
+            rf_results.columns = ['Method', f'Training {parameter_criterion_string}', 'Training R2', f'Test {parameter_criterion_string}', 'Test R2']
+            # Convert objects to numerics
+            for col in rf_results.columns:
+                rf_results[col] = pd.to_numeric(rf_results[col], errors='ignore')
+            # Round to 3 digits
+            rf_results = rf_results.round(3)
+        
+        status.update(label="Status", state="complete", expanded=False)
 
+else:
+    st.warning('👈 Upload a CSV file to get started!')
 
 if uploaded_file or example_data:
     #with placeholder1:
