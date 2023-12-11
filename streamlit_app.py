@@ -122,7 +122,7 @@ if uploaded_file or example_data:
     col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
 
     st.header('Model parameters', divider='rainbow')
-    parameters_col = st.columns(4)
+    parameters_col = st.columns(3)
     parameters_col[0].metric(label="Data split ratio (% for Training Set)", value=parameter_split_size, delta="")
     parameters_col[1].metric(label="Number of estimators (n_estimators)", value=parameter_n_estimators, delta="")
     parameters_col[2].metric(label="Max features (max_features)", value=parameter_max_features, delta="")
