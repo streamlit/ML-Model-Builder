@@ -106,7 +106,7 @@ if uploaded_file or example_data:
             # Round to 3 digits
             rf_results = rf_results.round(3)
         
-        status.update(label="Status", state="complete", expanded=False)
+    status.update(label="Status", state="complete", expanded=False)
 
 else:
     st.warning('👈 Upload a CSV file to get started!')
