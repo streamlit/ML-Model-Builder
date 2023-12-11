@@ -120,9 +120,10 @@ if uploaded_file or example_data:
     col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
     col[2].metric(label="No. of Training samples", value=X_train.shape[0], delta="")
     col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
-    
 
-    performance_col = st.columns(2)
+    st.header('Model parameters', divider='rainbow')
+
+    
     
     importances = rf.feature_importances_
     feature_names = list(X.columns)
@@ -134,6 +135,9 @@ if uploaded_file or example_data:
         #y='feature'
         y=alt.Y('feature:N', sort='-x')
     ).properties(height=250)
+
+    
+    performance_col = st.columns(2)
     
     with performance_col[0]:
         st.header('Model performance', divider='rainbow')
