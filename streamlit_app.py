@@ -65,8 +65,10 @@ if uploaded_file or example_data:
     
         #if uploaded_file or example_data: 
             st.write("Preparing data ...")
-            X = df.drop('logS', axis=1)
-            y = df['logS']
+            #X = df.drop('logS', axis=1)
+            #y = df['logS']
+            X = df.iloc[:,:-1]
+            y = df.iloc[:,-1]
             
             st.write("Splitting data ...")
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=(100-parameter_split_size)/100, random_state=parameter_random_state)
