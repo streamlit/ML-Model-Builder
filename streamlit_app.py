@@ -32,7 +32,7 @@ with st.sidebar:
     # Download example data
     @st.cache_data
     def convert_df(input_df):
-        return input_df.to_csv().encode('utf-8')
+        return input_df.to_csv(index=False).encode('utf-8')
     example_csv = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
     csv = convert_df(example_csv)
     st.download_button(
