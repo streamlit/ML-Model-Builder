@@ -51,7 +51,7 @@ with st.sidebar:
         parameter_max_features = st.select_slider('Max features (max_features)', options=['all', 'sqrt', 'log2'])
         if parameter_max_features == 'all':
             parameter_max_features = None
-            parameter_max_features_metric = df.iloc[:,:-1].shape[1]
+            parameter_max_features_metric = df.shape[1]-1
         parameter_min_samples_split = st.slider('Minimum number of samples required to split an internal node (min_samples_split)', 2, 10, 2, 1)
         parameter_min_samples_leaf = st.slider('Minimum number of samples required to be at a leaf node (min_samples_leaf)', 1, 10, 2, 1)
 
