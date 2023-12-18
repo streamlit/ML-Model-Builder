@@ -74,8 +74,7 @@ if uploaded_file or example_data:
                 random_state=parameter_random_state,
                 criterion=parameter_criterion,
                 bootstrap=parameter_bootstrap,
-                oob_score=parameter_oob_score,
-                n_jobs=parameter_n_jobs)
+                oob_score=parameter_oob_score)
         rf.fit(X_train, y_train)
         
         st.write("Applying model to make predictions ...")
