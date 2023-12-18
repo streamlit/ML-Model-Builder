@@ -15,7 +15,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-
 # Sidebar for accepting input parameters
 with st.sidebar:
     st.title('🤖 Machine Learning App v2')
@@ -42,9 +41,6 @@ with st.sidebar:
         file_name='delaney_solubility_with_descriptors.csv',
         mime='text/csv',
     )
-    #st.sidebar.markdown("""
-    #[Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
-    #""")
 
     st.header('2. Set Parameters')
     parameter_split_size = st.slider('Data split ratio (% for Training Set)', 10, 90, 80, 5)
@@ -68,7 +64,7 @@ with st.sidebar:
 
     sleep_time = st.slider('Sleep time', 0, 3, 1)
 
-
+# Initiate the model building process
 if uploaded_file or example_data: 
     with st.status("Running ...", expanded=True) as status:
     
@@ -158,5 +154,6 @@ if uploaded_file or example_data:
         st.header('Feature importance', divider='rainbow')
         st.altair_chart(bars, theme='streamlit')
 
+# Ask for CSV upload if none is detected
 else:
     st.warning('👈 Upload a CSV file to get started!')
