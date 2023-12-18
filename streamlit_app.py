@@ -55,6 +55,7 @@ with st.sidebar:
         parameter_max_features = st.select_slider('Max features (max_features)', options=['all', 'sqrt', 'log2'])
         if parameter_max_features == 'all':
             parameter_max_features = None
+            parameter_max_features_metric = df.shape[1]
         parameter_min_samples_split = st.slider('Minimum number of samples required to split an internal node (min_samples_split)', 2, 10, 2, 1)
         parameter_min_samples_leaf = st.slider('Minimum number of samples required to be at a leaf node (min_samples_leaf)', 1, 10, 2, 1)
 
@@ -136,7 +137,7 @@ if uploaded_file or example_data:
     parameters_col = st.columns(3)
     parameters_col[0].metric(label="Data split ratio (% for Training Set)", value=parameter_split_size, delta="")
     parameters_col[1].metric(label="Number of estimators (n_estimators)", value=parameter_n_estimators, delta="")
-    parameters_col[2].metric(label="Max features (max_features)", value=parameter_max_features, delta="")
+    parameters_col[2].metric(label="Max features (max_features)", value=parameter_max_features_metric, delta="")
     
     # Display feature importance plot
     importances = rf.feature_importances_
