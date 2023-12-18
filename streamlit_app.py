@@ -8,7 +8,7 @@ import altair as alt
 import time
 
 st.set_page_config(
-    page_title="Machine Learning App v2",
+    page_title="ML App v2",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
