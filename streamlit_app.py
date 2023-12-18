@@ -51,8 +51,8 @@ if example_data:
 if uploaded_file or example_data: 
     with st.status("Running ...", expanded=True) as status:
     
-            st.write("Loading data ...")
-            time.sleep(sleep_time)
+        st.write("Loading data ...")
+        time.sleep(sleep_time)
         #if uploaded_file is not None:
         #    df = pd.read_csv(uploaded_file)
         # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
@@ -62,18 +62,18 @@ if uploaded_file or example_data:
         #    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
     
         #if uploaded_file or example_data: 
-            st.write("Preparing data ...")
-            time.sleep(sleep_time)
-            X = df.iloc[:,:-1]
-            y = df.iloc[:,-1]
+        st.write("Preparing data ...")
+        time.sleep(sleep_time)
+        X = df.iloc[:,:-1]
+        y = df.iloc[:,-1]
             
-            st.write("Splitting data ...")
-            time.sleep(sleep_time)
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=(100-parameter_split_size)/100, random_state=parameter_random_state)
+        st.write("Splitting data ...")
+        time.sleep(sleep_time)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=(100-parameter_split_size)/100, random_state=parameter_random_state)
     
-            st.write("Training the model ...")
-            time.sleep(sleep_time)
-            rf = RandomForestRegressor(
+        st.write("Training the model ...")
+        time.sleep(sleep_time)
+        rf = RandomForestRegressor(
                 n_estimators=parameter_n_estimators,
                 max_features=parameter_max_features,
                 min_samples_split=parameter_min_samples_split,
@@ -83,40 +83,36 @@ if uploaded_file or example_data:
                 bootstrap=parameter_bootstrap,
                 oob_score=parameter_oob_score,
                 n_jobs=parameter_n_jobs)
-            rf.fit(X_train, y_train)
+        rf.fit(X_train, y_train)
         
-            st.write("Applying model to make predictions ...")
-            time.sleep(sleep_time)
-            y_train_pred = rf.predict(X_train)
-            y_test_pred = rf.predict(X_test)
+        st.write("Applying model to make predictions ...")
+        time.sleep(sleep_time)
+        y_train_pred = rf.predict(X_train)
+        y_test_pred = rf.predict(X_test)
             
-            st.write("Evaluating performance metrics ...")
-            time.sleep(sleep_time)
-            train_mse = mean_squared_error(y_train, y_train_pred)
-            train_r2 = r2_score(y_train, y_train_pred)
-            test_mse = mean_squared_error(y_test, y_test_pred)
-            test_r2 = r2_score(y_test, y_test_pred)
+        st.write("Evaluating performance metrics ...")
+        time.sleep(sleep_time)
+        train_mse = mean_squared_error(y_train, y_train_pred)
+        train_r2 = r2_score(y_train, y_train_pred)
+        test_mse = mean_squared_error(y_test, y_test_pred)
+        test_r2 = r2_score(y_test, y_test_pred)
         
-            st.write("Displaying performance metrics ...")
-            time.sleep(sleep_time)
-            parameter_criterion_string = ' '.join([x.capitalize() for x in parameter_criterion.split('_')])
-            #if 'Mse' in parameter_criterion_string:
-            #    parameter_criterion_string = parameter_criterion_string.replace('Mse', 'MSE')
-            rf_results = pd.DataFrame(['Random forest', train_mse, train_r2, test_mse, test_r2]).transpose()
-            rf_results.columns = ['Method', f'Training {parameter_criterion_string}', 'Training R2', f'Test {parameter_criterion_string}', 'Test R2']
-            # Convert objects to numerics
-            for col in rf_results.columns:
-                rf_results[col] = pd.to_numeric(rf_results[col], errors='ignore')
-            # Round to 3 digits
-            rf_results = rf_results.round(3)
+        st.write("Displaying performance metrics ...")
+        time.sleep(sleep_time)
+        parameter_criterion_string = ' '.join([x.capitalize() for x in parameter_criterion.split('_')])
+        #if 'Mse' in parameter_criterion_string:
+        #    parameter_criterion_string = parameter_criterion_string.replace('Mse', 'MSE')
+        rf_results = pd.DataFrame(['Random forest', train_mse, train_r2, test_mse, test_r2]).transpose()
+        rf_results.columns = ['Method', f'Training {parameter_criterion_string}', 'Training R2', f'Test {parameter_criterion_string}', 'Test R2']
+        # Convert objects to numerics
+        for col in rf_results.columns:
+            rf_results[col] = pd.to_numeric(rf_results[col], errors='ignore')
+        # Round to 3 digits
+        rf_results = rf_results.round(3)
         
     status.update(label="Status", state="complete", expanded=False)
 
-else:
-    st.warning('👈 Upload a CSV file to get started!')
-
-# if uploaded_file or example_data:
-if rf_results is not None:
+    # Display data info
     st.header('Input data', divider='rainbow')
     col = st.columns(4)
     col[0].metric(label="No. of samples", value=X.shape[0], delta="")
@@ -124,13 +120,14 @@ if rf_results is not None:
     col[2].metric(label="No. of Training samples", value=X_train.shape[0], delta="")
     col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
 
+    # Display model parameters
     st.header('Model parameters', divider='rainbow')
     parameters_col = st.columns(3)
     parameters_col[0].metric(label="Data split ratio (% for Training Set)", value=parameter_split_size, delta="")
     parameters_col[1].metric(label="Number of estimators (n_estimators)", value=parameter_n_estimators, delta="")
     parameters_col[2].metric(label="Max features (max_features)", value=parameter_max_features, delta="")
     
-    
+    # Display feature importance plot
     importances = rf.feature_importances_
     feature_names = list(X.columns)
     forest_importances = pd.Series(importances, index=feature_names)
@@ -149,3 +146,5 @@ if rf_results is not None:
         st.header('Feature importance', divider='rainbow')
         st.altair_chart(bars, theme='streamlit')
 
+else:
+    st.warning('👈 Upload a CSV file to get started!')
