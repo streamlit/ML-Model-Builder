@@ -82,7 +82,7 @@ if uploaded_file or example_data:
 
         if parameter_max_features == 'all':
             parameter_max_features = None
-            parameter_max_features_metric = df.shape[1]-1
+            parameter_max_features_metric = X.shape[1]
         
         rf = RandomForestRegressor(
                 n_estimators=parameter_n_estimators,
