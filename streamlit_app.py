@@ -62,7 +62,7 @@ with st.sidebar:
         parameter_bootstrap = st.select_slider('Bootstrap samples when building trees (bootstrap)', options=[True, False])
         parameter_oob_score = st.select_slider('Whether to use out-of-bag samples to estimate the R^2 on unseen data (oob_score)', options=[False, True])
 
-    sleep_time = st.slider('Sleep time', 0, 3, 1)
+    sleep_time = st.slider('Sleep time', 0, 3, 0)
 
 # Initiate the model building process
 if uploaded_file or example_data: 
@@ -82,10 +82,6 @@ if uploaded_file or example_data:
     
         st.write("Training the model ...")
         time.sleep(sleep_time)
-
-        if parameter_max_features == 'all':
-            parameter_max_features = None
-            parameter_max_features_metric = X.shape[1]
         
         rf = RandomForestRegressor(
                 n_estimators=parameter_n_estimators,
@@ -138,7 +134,7 @@ if uploaded_file or example_data:
     parameters_col = st.columns(3)
     parameters_col[0].metric(label="Data split ratio (% for Training Set)", value=parameter_split_size, delta="")
     parameters_col[1].metric(label="Number of estimators (n_estimators)", value=parameter_n_estimators, delta="")
-    parameters_col[2].metric(label="Max features (max_features)", value=parameter_max_features_metric, delta="")
+    parameters_col[2].metric(label="Max features (max_features)", value=parameter_max_features, delta="")
     
     # Display feature importance plot
     importances = rf.feature_importances_
