@@ -28,10 +28,11 @@ with st.sidebar:
     parameter_split_size = st.slider('Data split ratio (% for Training Set)', 10, 90, 80, 5)
 
     st.subheader('2.1. Learning Parameters')
-    parameter_n_estimators = st.slider('Number of estimators (n_estimators)', 0, 1000, 100, 100)
-    parameter_max_features = st.select_slider('Max features (max_features)', options=[None, 'sqrt', 'log2'])
-    parameter_min_samples_split = st.slider('Minimum number of samples required to split an internal node (min_samples_split)', 2, 10, 2, 1)
-    parameter_min_samples_leaf = st.slider('Minimum number of samples required to be at a leaf node (min_samples_leaf)', 1, 10, 2, 1)
+    with st.expander('See parameters'):
+        parameter_n_estimators = st.slider('Number of estimators (n_estimators)', 0, 1000, 100, 100)
+        parameter_max_features = st.select_slider('Max features (max_features)', options=[None, 'sqrt', 'log2'])
+        parameter_min_samples_split = st.slider('Minimum number of samples required to split an internal node (min_samples_split)', 2, 10, 2, 1)
+        parameter_min_samples_leaf = st.slider('Minimum number of samples required to be at a leaf node (min_samples_leaf)', 1, 10, 2, 1)
 
     st.subheader('2.2. General Parameters')
     parameter_random_state = st.slider('Seed number (random_state)', 0, 1000, 42, 1)
