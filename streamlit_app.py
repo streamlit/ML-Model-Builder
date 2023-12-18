@@ -7,6 +7,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 import altair as alt
 import time
 
+# Page configuration
 st.set_page_config(
     page_title="ML App v2",
     page_icon="🤖",
@@ -14,15 +15,34 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# Load data
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+
+if example_data:
+    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
+
+# Sidebar for accepting input parameters
 with st.sidebar:
     st.title('🤖 Machine Learning App v2')
     
     st.header('1. Upload your CSV data')
     uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
     example_data = st.toggle('Load example data')
-    st.sidebar.markdown("""
-    [Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
-    """)
+    
+    @st.cache_data
+    def convert_df(df):
+        return df.to_csv().encode('utf-8')
+    csv = convert_df(df)
+    st.download_button(
+        label="Download example CSV",
+        data=csv,
+        file_name='delaney_solubility_with_descriptors.csv',
+        mime='text/csv',
+    )
+    #st.sidebar.markdown("""
+    #[Example CSV input file](https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv)
+    #""")
 
     st.header('2. Set Parameters')
     parameter_split_size = st.slider('Data split ratio (% for Training Set)', 10, 90, 80, 5)
@@ -43,11 +63,6 @@ with st.sidebar:
 
     sleep_time = st.slider('Sleep time', 0, 3, 1)
 
-if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-
-if example_data:
-    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
 if uploaded_file or example_data: 
     with st.status("Running ...", expanded=True) as status:
