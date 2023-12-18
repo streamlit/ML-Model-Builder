@@ -40,6 +40,7 @@ with st.sidebar:
     parameter_oob_score = st.select_slider('Whether to use out-of-bag samples to estimate the R^2 on unseen data (oob_score)', options=[False, True])
     parameter_n_jobs = st.select_slider('Number of jobs to run in parallel (n_jobs)', options=[1, -1])
 
+    sleep_time = st.slider('Sleep time', 0, 5, 3)
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
@@ -51,7 +52,7 @@ if uploaded_file or example_data:
     with st.status("Running ...", expanded=True) as status:
     
             st.write("Loading data ...")
-            time.sleep(1)
+            time.sleep(sleep_time)
         #if uploaded_file is not None:
         #    df = pd.read_csv(uploaded_file)
         # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
@@ -62,15 +63,16 @@ if uploaded_file or example_data:
     
         #if uploaded_file or example_data: 
             st.write("Preparing data ...")
-            time.sleep(1)
+            time.sleep(sleep_time)
             X = df.iloc[:,:-1]
             y = df.iloc[:,-1]
             
             st.write("Splitting data ...")
-            time.sleep(1)
+            time.sleep(sleep_time)
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=(100-parameter_split_size)/100, random_state=parameter_random_state)
     
             st.write("Training the model ...")
+            time.sleep(sleep_time)
             rf = RandomForestRegressor(
                 n_estimators=parameter_n_estimators,
                 max_features=parameter_max_features,
@@ -84,19 +86,19 @@ if uploaded_file or example_data:
             rf.fit(X_train, y_train)
         
             st.write("Applying model to make predictions ...")
-            time.sleep(1)
+            time.sleep(sleep_time)
             y_train_pred = rf.predict(X_train)
             y_test_pred = rf.predict(X_test)
             
             st.write("Evaluating performance metrics ...")
-            time.sleep(1)
+            time.sleep(sleep_time)
             train_mse = mean_squared_error(y_train, y_train_pred)
             train_r2 = r2_score(y_train, y_train_pred)
             test_mse = mean_squared_error(y_test, y_test_pred)
             test_r2 = r2_score(y_test, y_test_pred)
         
             st.write("Displaying performance metrics ...")
-            time.sleep(1)
+            time.sleep(sleep_time)
             parameter_criterion_string = ' '.join([x.capitalize() for x in parameter_criterion.split('_')])
             #if 'Mse' in parameter_criterion_string:
             #    parameter_criterion_string = parameter_criterion_string.replace('Mse', 'MSE')
