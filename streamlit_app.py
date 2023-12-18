@@ -40,9 +40,8 @@ with st.sidebar:
         parameter_criterion = st.select_slider('Performance measure (criterion)', options=['squared_error', 'absolute_error', 'friedman_mse'])
         parameter_bootstrap = st.select_slider('Bootstrap samples when building trees (bootstrap)', options=[True, False])
         parameter_oob_score = st.select_slider('Whether to use out-of-bag samples to estimate the R^2 on unseen data (oob_score)', options=[False, True])
-        parameter_n_jobs = st.select_slider('Number of jobs to run in parallel (n_jobs)', options=[1, -1])
 
-    sleep_time = st.slider('Sleep time', 0, 5, 2)
+    sleep_time = st.slider('Sleep time', 0, 3, 1)
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
@@ -55,15 +54,7 @@ if uploaded_file or example_data:
     
         st.write("Loading data ...")
         time.sleep(sleep_time)
-        #if uploaded_file is not None:
-        #    df = pd.read_csv(uploaded_file)
-        # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
-    
-    
-        #if example_data:
-        #    df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
-    
-        #if uploaded_file or example_data: 
+
         st.write("Preparing data ...")
         time.sleep(sleep_time)
         X = df.iloc[:,:-1]
