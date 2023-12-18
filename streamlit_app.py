@@ -116,7 +116,7 @@ else:
     st.warning('👈 Upload a CSV file to get started!')
 
 # if uploaded_file or example_data:
-if rf_results:
+if rf_results not None:
     st.header('Input data', divider='rainbow')
     col = st.columns(4)
     col[0].metric(label="No. of samples", value=X.shape[0], delta="")
