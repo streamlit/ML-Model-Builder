@@ -5,6 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 import altair as alt
+import time
 
 st.set_page_config(
     page_title="Machine Learning App v2",
@@ -39,10 +40,6 @@ with st.sidebar:
     parameter_oob_score = st.select_slider('Whether to use out-of-bag samples to estimate the R^2 on unseen data (oob_score)', options=[False, True])
     parameter_n_jobs = st.select_slider('Number of jobs to run in parallel (n_jobs)', options=[1, -1])
 
-placeholder1 = st.empty()
-#col = st.columns(5)
-placeholder2 = st.empty()
-
 
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
@@ -53,8 +50,8 @@ if example_data:
 if uploaded_file or example_data: 
     with st.status("Running ...", expanded=True) as status:
     
-            
             st.write("Loading data ...")
+            time.sleep(1)
         #if uploaded_file is not None:
         #    df = pd.read_csv(uploaded_file)
         # df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
@@ -65,12 +62,12 @@ if uploaded_file or example_data:
     
         #if uploaded_file or example_data: 
             st.write("Preparing data ...")
-            #X = df.drop('logS', axis=1)
-            #y = df['logS']
+            time.sleep(1)
             X = df.iloc[:,:-1]
             y = df.iloc[:,-1]
             
             st.write("Splitting data ...")
+            time.sleep(1)
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=(100-parameter_split_size)/100, random_state=parameter_random_state)
     
             st.write("Training the model ...")
@@ -87,16 +84,19 @@ if uploaded_file or example_data:
             rf.fit(X_train, y_train)
         
             st.write("Applying model to make predictions ...")
+            time.sleep(1)
             y_train_pred = rf.predict(X_train)
             y_test_pred = rf.predict(X_test)
             
             st.write("Evaluating performance metrics ...")
+            time.sleep(1)
             train_mse = mean_squared_error(y_train, y_train_pred)
             train_r2 = r2_score(y_train, y_train_pred)
             test_mse = mean_squared_error(y_test, y_test_pred)
             test_r2 = r2_score(y_test, y_test_pred)
         
             st.write("Displaying performance metrics ...")
+            time.sleep(1)
             parameter_criterion_string = ' '.join([x.capitalize() for x in parameter_criterion.split('_')])
             #if 'Mse' in parameter_criterion_string:
             #    parameter_criterion_string = parameter_criterion_string.replace('Mse', 'MSE')
@@ -114,7 +114,6 @@ else:
     st.warning('👈 Upload a CSV file to get started!')
 
 if uploaded_file or example_data:
-    #with placeholder1:
     st.header('Input data', divider='rainbow')
     col = st.columns(4)
     col[0].metric(label="No. of samples", value=X.shape[0], delta="")
@@ -135,18 +134,14 @@ if uploaded_file or example_data:
     df_importance = forest_importances.reset_index().rename(columns={'index': 'feature', 0: 'value'})
     
     bars = alt.Chart(df_importance).mark_bar(size=40).encode(
-        x='value:Q',
-        #y='feature'
-        y=alt.Y('feature:N', sort='-x')
-    ).properties(height=250)
+             x='value:Q',
+             y=alt.Y('feature:N', sort='-x')
+           ).properties(height=250)
 
-    
     performance_col = st.columns(2)
-    
     with performance_col[0]:
         st.header('Model performance', divider='rainbow')
         st.dataframe(rf_results.T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
-    
     with performance_col[1]:
         st.header('Feature importance', divider='rainbow')
         st.altair_chart(bars, theme='streamlit')
