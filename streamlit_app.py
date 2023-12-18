@@ -129,6 +129,7 @@ if uploaded_file or example_data:
     col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
     col[2].metric(label="No. of Training samples", value=X_train.shape[0], delta="")
     col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
+    st.dataframe(df)
 
     # Display model parameters
     st.header('Model parameters', divider='rainbow')
