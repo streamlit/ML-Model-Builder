@@ -50,7 +50,7 @@ with st.sidebar:
         parameter_n_estimators = st.slider('Number of estimators (n_estimators)', 0, 1000, 100, 100)
         
         n_features = df.shape[1]-1
-        parameter_max_features = st.slider('Max features (max_features)', 1, n_features, 1)
+        parameter_max_features = st.slider('Max features (max_features)', 1, n_features, n_features)
         
         parameter_min_samples_split = st.slider('Minimum number of samples required to split an internal node (min_samples_split)', 2, 10, 2, 1)
         parameter_min_samples_leaf = st.slider('Minimum number of samples required to be at a leaf node (min_samples_leaf)', 1, 10, 2, 1)
