@@ -129,7 +129,15 @@ if uploaded_file or example_data:
     col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
     col[2].metric(label="No. of Training samples", value=X_train.shape[0], delta="")
     col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
-    st.dataframe(df, height=210, use_container_width=True)
+    
+    with st.expander('Initial dataset'):
+        st.dataframe(df, height=210, use_container_width=True)
+    with st.expander('Train split'):
+        st.dataframe(X_train, height=210, use_container_width=True, expanded=False)
+        st.dataframe(y_train, height=210, use_container_width=True, expanded=False)
+    with st.expander('Test split', expanded=False):
+        st.dataframe(X_test, height=210, use_container_width=True, expanded=False)
+        st.dataframe(y_test, height=210, use_container_width=True, expanded=False)
 
     # Display model parameters
     st.header('Model parameters', divider='rainbow')
