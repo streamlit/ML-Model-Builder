@@ -159,4 +159,4 @@ if uploaded_file or example_data:
 
 # Ask for CSV upload if none is detected
 else:
-    st.warning('👈 Upload a CSV file or click 'Load example data' to get started!')
+    st.warning('👈 Upload a CSV file or click *"Load example data"* to get started!')
