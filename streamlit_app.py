@@ -20,7 +20,7 @@ with st.sidebar:
     st.title('🤖 Machine Learning App v2')
     
     st.header('1. Upload your CSV data')
-    uploaded_file = st.file_uploader("Upload your input CSV file", type=["csv"])
+    uploaded_file = st.file_uploader("Upload a CSV file or click 'Load example data' to get started!", type=["csv"])
     example_data = st.toggle('Load example data')
 
     # Load data
