@@ -135,10 +135,10 @@ if uploaded_file or example_data:
     with st.expander('Train split', expanded=False):
         train_col = st.columns((3,1))
         with train_col[0]:
-            st.subheader('X')
+            st.markdown('**X**')
             st.dataframe(X_train, height=210, hide_index=True, use_container_width=True)
         with train_col[1]:
-            st.subheader('y')
+            st.markdown('**y**')
             st.dataframe(y_train, height=210, hide_index=True, use_container_width=True)
     with st.expander('Test split', expanded=False):
         st.dataframe(X_test, height=210, hide_index=True, use_container_width=True)
