@@ -141,8 +141,13 @@ if uploaded_file or example_data:
             st.markdown('**y**')
             st.dataframe(y_train, height=210, hide_index=True, use_container_width=True)
     with st.expander('Test split', expanded=False):
-        st.dataframe(X_test, height=210, hide_index=True, use_container_width=True)
-        st.dataframe(y_test, height=210, hide_index=True, use_container_width=True)
+        test_col = st.columns((3,1))
+        with test_col[0]:
+            st.markdown('**X**')
+            st.dataframe(X_test, height=210, hide_index=True, use_container_width=True)
+        with test_col[1]:
+            st.markdown('**y**')
+            st.dataframe(y_test, height=210, hide_index=True, use_container_width=True)
 
     # Display model parameters
     st.header('Model parameters', divider='rainbow')
