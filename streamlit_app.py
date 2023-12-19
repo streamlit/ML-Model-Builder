@@ -6,6 +6,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error, r2_score
 import altair as alt
 import time
+import zipfile
 
 # Page configuration
 st.set_page_config(
@@ -149,6 +150,26 @@ if uploaded_file or example_data:
             st.markdown('**y**')
             st.dataframe(y_test, height=210, hide_index=True, use_container_width=True)
 
+    # Zip dataset files
+    df.to_csv('dataset.csv', index=False).encode('utf-8')
+    X_train.to_csv('X_train.csv', index=False).encode('utf-8')
+    y_train.to_csv('y_train.csv', index=False).encode('utf-8')
+    X_test.to_csv('X_test.csv', index=False).encode('utf-8')
+    y_test.to_csv('y_test.csv', index=False).encode('utf-8')
+    
+    list_files = ['dataset.csv', 'X_train.csv', 'y_train.csv', 'X_test.csv', 'y_test.csv']
+    with zipfile.ZipFile('dataset.zip', 'w') as zipF:
+        for file in list_files:
+            zipF.write(file, compress_type=zipfile.ZIP_DEFLATED)
+
+    with open('dataset.zip', 'rb') as datazip:
+        btn = st.download_button(
+                label='Download ZIP',
+                data=datazip,
+                file_name="dataset.zip",
+                mime="application/octet-stream"
+                )
+    
     # Display model parameters
     st.header('Model parameters', divider='rainbow')
     parameters_col = st.columns(3)
