@@ -130,7 +130,7 @@ if uploaded_file or example_data:
     col[2].metric(label="No. of Training samples", value=X_train.shape[0], delta="")
     col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
     
-    with st.expander('Initial dataset'):
+    with st.expander('Initial dataset', expanded=True):
         st.dataframe(df, height=210, use_container_width=True)
     with st.expander('Train split', expanded=False):
         st.dataframe(X_train, height=210, use_container_width=True)
