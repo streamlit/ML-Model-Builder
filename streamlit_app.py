@@ -132,12 +132,12 @@ if uploaded_file or example_data:
     
     with st.expander('Initial dataset'):
         st.dataframe(df, height=210, use_container_width=True)
-    with st.expander('Train split'):
-        st.dataframe(X_train, height=210, use_container_width=True, expanded=False)
-        st.dataframe(y_train, height=210, use_container_width=True, expanded=False)
+    with st.expander('Train split', expanded=False):
+        st.dataframe(X_train, height=210, use_container_width=True)
+        st.dataframe(y_train, height=210, use_container_width=True)
     with st.expander('Test split', expanded=False):
-        st.dataframe(X_test, height=210, use_container_width=True, expanded=False)
-        st.dataframe(y_test, height=210, use_container_width=True, expanded=False)
+        st.dataframe(X_test, height=210, use_container_width=True)
+        st.dataframe(y_test, height=210, use_container_width=True)
 
     # Display model parameters
     st.header('Model parameters', divider='rainbow')
