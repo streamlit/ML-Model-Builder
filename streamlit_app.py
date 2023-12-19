@@ -133,8 +133,11 @@ if uploaded_file or example_data:
     with st.expander('Initial dataset', expanded=True):
         st.dataframe(df, height=210, use_container_width=True)
     with st.expander('Train split', expanded=False):
-        st.dataframe(X_train, height=210, hide_index=True, use_container_width=True)
-        st.dataframe(y_train, height=210, hide_index=True, use_container_width=True)
+        train_col = st.columns((3,1))
+        with train_col[0]:
+            st.dataframe(X_train, height=210, hide_index=True, use_container_width=True)
+        with train_col[1]:
+            st.dataframe(y_train, height=210, hide_index=True, use_container_width=True)
     with st.expander('Test split', expanded=False):
         st.dataframe(X_test, height=210, hide_index=True, use_container_width=True)
         st.dataframe(y_test, height=210, hide_index=True, use_container_width=True)
