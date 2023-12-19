@@ -151,11 +151,11 @@ if uploaded_file or example_data:
             st.dataframe(y_test, height=210, hide_index=True, use_container_width=True)
 
     # Zip dataset files
-    df.to_csv('dataset.csv', index=False).encode('utf-8')
-    X_train.to_csv('X_train.csv', index=False).encode('utf-8')
-    y_train.to_csv('y_train.csv', index=False).encode('utf-8')
-    X_test.to_csv('X_test.csv', index=False).encode('utf-8')
-    y_test.to_csv('y_test.csv', index=False).encode('utf-8')
+    df.to_csv('dataset.csv', index=False)
+    X_train.to_csv('X_train.csv', index=False)
+    y_train.to_csv('y_train.csv', index=False)
+    X_test.to_csv('X_test.csv', index=False)
+    y_test.to_csv('y_test.csv', index=False)
     
     list_files = ['dataset.csv', 'X_train.csv', 'y_train.csv', 'X_test.csv', 'y_test.csv']
     with zipfile.ZipFile('dataset.zip', 'w') as zipF:
