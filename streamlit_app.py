@@ -10,7 +10,7 @@ import zipfile
 
 # Page configuration
 st.set_page_config(
-    page_title="ML App v2",
+    page_title="Machine Learning App",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
