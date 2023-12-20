@@ -17,6 +17,18 @@ st.set_page_config(
 )
 st.title('🤖 Machine Learning')
 
+# CSS styling
+st.markdown("""
+<style>
+
+[data-testid="block-container"] {
+    padding-top: 1rem;
+    padding-bottom: 0rem;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
 # Sidebar for accepting input parameters
 with st.sidebar:
     st.header('1. Upload your CSV data')
