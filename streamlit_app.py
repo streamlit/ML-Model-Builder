@@ -10,11 +10,11 @@ import zipfile
 
 # Page configuration
 st.set_page_config(
-    page_title="Machine Learning",
+    page_title="ML Model Building",
     page_icon="🤖",
     layout="wide"
 )
-st.title('🤖 Machine Learning')
+st.title('🤖 ML Model Building')
 
 # CSS styling
 st.markdown("""
