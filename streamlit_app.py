@@ -12,8 +12,7 @@ import zipfile
 st.set_page_config(
     page_title="Machine Learning",
     page_icon="🤖",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="wide"
 )
 st.title('🤖 Machine Learning')
 
