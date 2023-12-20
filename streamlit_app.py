@@ -15,11 +15,10 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+st.title('🤖 Machine Learning')
 
 # Sidebar for accepting input parameters
 with st.sidebar:
-    st.title('🤖 Machine Learning')
-    
     st.header('1. Upload your CSV data')
     uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
     example_data = st.toggle('Load example data')
