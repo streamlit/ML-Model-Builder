@@ -88,7 +88,7 @@ if uploaded_file or example_data:
         time.sleep(sleep_time)
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=(100-parameter_split_size)/100, random_state=parameter_random_state)
     
-        st.write("Training the model ...")
+        st.write("Model training ...")
         time.sleep(sleep_time)
 
         if parameter_max_features == 'all':
