@@ -203,7 +203,7 @@ if uploaded_file or example_data:
     with performance_col[0]:
         st.header('Model performance', divider='rainbow')
         st.dataframe(rf_results.T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
-    with performance_col[1]:
+    with performance_col[2]:
         st.header('Feature importance', divider='rainbow')
         st.altair_chart(bars, theme='streamlit')
 
@@ -227,7 +227,7 @@ if uploaded_file or example_data:
         st.dataframe(df_prediction, height=240, use_container_width=True)
 
     # Display scatter plot of actual vs predicted values
-    with prediction_col[1]:
+    with prediction_col[2]:
         scatter = alt.Chart(df_prediction).mark_circle(size=60).encode(
                         x='actual',
                         y='predicted',
