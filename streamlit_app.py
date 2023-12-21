@@ -199,7 +199,7 @@ if uploaded_file or example_data:
              y=alt.Y('feature:N', sort='-x')
            ).properties(height=250)
 
-    performance_col = st.columns((2, 3))
+    performance_col = st.columns((2, 0.2, 3))
     with performance_col[0]:
         st.header('Model performance', divider='rainbow')
         st.dataframe(rf_results.T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
@@ -220,7 +220,7 @@ if uploaded_file or example_data:
     
     df_prediction = pd.concat([df_train, df_test], axis=0)
     
-    prediction_col = st.columns((2, 3))
+    prediction_col = st.columns((2, 0.2, 3))
     
     # Display dataframe
     with prediction_col[0]:
