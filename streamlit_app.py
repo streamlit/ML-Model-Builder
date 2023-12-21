@@ -219,7 +219,7 @@ if uploaded_file or example_data:
     df_test['class'] = 'test'
     
     df_prediction = pd.concat([df_train, df_test], axis=0)
-    
+    df_prediction
     #scatter = alt.Chart(df_prediction).mark_circle(size=60).encode(
     #                x=y_train,
     #                y=y_train_pred
