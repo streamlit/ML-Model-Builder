@@ -199,7 +199,7 @@ if uploaded_file or example_data:
              y=alt.Y('feature:N', sort='-x')
            ).properties(height=250)
 
-    performance_col = st.columns(2)
+    performance_col = st.columns((2, 3))
     with performance_col[0]:
         st.header('Model performance', divider='rainbow')
         st.dataframe(rf_results.T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
@@ -208,23 +208,26 @@ if uploaded_file or example_data:
         st.altair_chart(bars, theme='streamlit')
 
     # Display scatter plot of actual vs predicted values
-    s_y_train = pd.Series(y_train, name='actual').reset_index(drop=True)
-    s_y_train_pred = pd.Series(y_train_pred, name='predicted').reset_index(drop=True)
-    df_train = pd.DataFrame(data=[s_y_train, s_y_train_pred], index=None).T
-    df_train['class'] = 'train'
-    
-    s_y_test = pd.Series(y_test, name='actual').reset_index(drop=True)
-    s_y_test_pred = pd.Series(y_test_pred, name='predicted').reset_index(drop=True)
-    df_test = pd.DataFrame(data=[s_y_test, s_y_test_pred], index=None).T
-    df_test['class'] = 'test'
-    
-    df_prediction = pd.concat([df_train, df_test], axis=0)
-    df_prediction
-    #scatter = alt.Chart(df_prediction).mark_circle(size=60).encode(
-    #                x=y_train,
-    #                y=y_train_pred
-    #          )
-    #st.altair_chart(scatter, theme='streamlit')
+    prediction_col = st.columns((2, 3))
+    with prediction_col[0]:
+        s_y_train = pd.Series(y_train, name='actual').reset_index(drop=True)
+        s_y_train_pred = pd.Series(y_train_pred, name='predicted').reset_index(drop=True)
+        df_train = pd.DataFrame(data=[s_y_train, s_y_train_pred], index=None).T
+        df_train['class'] = 'train'
+        
+        s_y_test = pd.Series(y_test, name='actual').reset_index(drop=True)
+        s_y_test_pred = pd.Series(y_test_pred, name='predicted').reset_index(drop=True)
+        df_test = pd.DataFrame(data=[s_y_test, s_y_test_pred], index=None).T
+        df_test['class'] = 'test'
+
+        df_prediction = pd.concat([df_train, df_test], axis=0)
+        st.dataframe(df_prediction)
+    with prediction_col[1]:
+        scatter = alt.Chart(df_prediction).mark_circle(size=60).encode(
+                        x=y_train,
+                        y=y_train_pred
+                  )
+        st.altair_chart(scatter, theme='streamlit')
 
 
 
