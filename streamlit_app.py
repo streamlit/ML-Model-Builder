@@ -207,6 +207,14 @@ if uploaded_file or example_data:
         st.header('Feature importance', divider='rainbow')
         st.altair_chart(bars, theme='streamlit')
 
+    # Display scatter plot of actual vs predicted values
+    scatter = alt.Chart(source).mark_circle(size=60).encode(
+                    x='Horsepower',
+                    y='Miles_per_Gallon',
+                    color='Origin'
+              )
+    st.altiar_chart(scatter, theme='streamlit')
+    
 # Ask for CSV upload if none is detected
 else:
     st.warning('👈 Upload a CSV file or click *"Load example data"* to get started!')
