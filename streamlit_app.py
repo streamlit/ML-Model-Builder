@@ -205,7 +205,7 @@ if uploaded_file or example_data:
         st.dataframe(rf_results.T.reset_index().rename(columns={'index': 'Parameter', 0: 'Value'}))
     with performance_col[2]:
         st.header('Feature importance', divider='rainbow')
-        st.altair_chart(bars, theme='streamlit')
+        st.altair_chart(bars, theme='streamlit', use_container_width=True)
 
     # Prediction results
     st.header('Prediction results', divider='rainbow')
@@ -234,7 +234,7 @@ if uploaded_file or example_data:
                         y='predicted',
                         color='class'
                   )
-        st.altair_chart(scatter, theme='streamlit')
+        st.altair_chart(scatter, theme='streamlit', use_container_width=True)
 
     
 # Ask for CSV upload if none is detected
