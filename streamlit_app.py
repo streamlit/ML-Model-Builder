@@ -22,12 +22,12 @@ st.markdown("""
 <style>
 
 [data-testid="stSidebarUserContent"] {
-    padding-top: 1rem;
+    padding-top: 1.2rem;
     padding-bottom: 1rem;
 }
 
 [data-testid="block-container"] {
-    padding-top: 1rem;
+    padding-top: 1.2rem;
     padding-bottom: 0rem;
 }
 
