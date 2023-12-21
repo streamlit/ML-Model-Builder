@@ -21,6 +21,11 @@ st.info('This app will allow users to build a machine learning (ML) model in an 
 st.markdown("""
 <style>
 
+[data-testid="stSidebarUserContent"] {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
 [data-testid="block-container"] {
     padding-top: 1rem;
     padding-bottom: 0rem;
