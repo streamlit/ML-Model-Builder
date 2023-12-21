@@ -219,7 +219,7 @@ if uploaded_file or example_data:
                     x='y_train',
                     y='y_train_pred'
               )
-    st.altiar_chart(scatter, theme='streamlit')
+    st.altair_chart(scatter, theme='streamlit')
     
 # Ask for CSV upload if none is detected
 else:
