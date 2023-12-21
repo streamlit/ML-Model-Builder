@@ -208,6 +208,7 @@ if uploaded_file or example_data:
         st.altair_chart(bars, theme='streamlit')
 
     # Prediction results
+    st.header('Prediction results', divider='rainbow')
     s_y_train = pd.Series(y_train, name='actual').reset_index(drop=True)
     s_y_train_pred = pd.Series(y_train_pred, name='predicted').reset_index(drop=True)
     df_train = pd.DataFrame(data=[s_y_train, s_y_train_pred], index=None).T
