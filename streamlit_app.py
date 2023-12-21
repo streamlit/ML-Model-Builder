@@ -15,6 +15,7 @@ st.set_page_config(
     layout="wide"
 )
 st.title('🤖 ML Model Building')
+st.info('This app will allow users to build a machine learning (ML) model in an end-to-end workflow. This starts from data upload, data pre-processing, ML model building and post-model analysis. ')
 
 # CSS styling
 st.markdown("""
