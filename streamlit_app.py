@@ -224,7 +224,7 @@ if uploaded_file or example_data:
     
     # Display dataframe
     with prediction_col[0]:
-        st.dataframe(df_prediction)
+        st.dataframe(df_prediction, use_container_width=True)
 
     # Display scatter plot of actual vs predicted values
     with prediction_col[1]:
