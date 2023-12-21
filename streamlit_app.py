@@ -215,10 +215,9 @@ if uploaded_file or example_data:
                          'y_test_pred': y_test_pred}
                      ])
     
-    scatter = alt.Chart(source).mark_circle(size=60).encode(
-                    x='Horsepower',
-                    y='Miles_per_Gallon',
-                    color='Origin'
+    scatter = alt.Chart(df_predictions).mark_circle(size=60).encode(
+                    x='y_train',
+                    y='y_train_pred'
               )
     st.altiar_chart(scatter, theme='streamlit')
     
