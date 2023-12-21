@@ -136,12 +136,11 @@ if uploaded_file or example_data:
 
     # Display data info
     st.header('Input data', divider='rainbow')
-    with st.container(border=True):
-        col = st.columns(4)
-        col[0].metric(label="No. of samples", value=X.shape[0], delta="")
-        col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
-        col[2].metric(label="No. of Training samples", value=X_train.shape[0], delta="")
-        col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
+    col = st.columns(4)
+    col[0].metric(label="No. of samples", value=X.shape[0], delta="")
+    col[1].metric(label="No. of X variables", value=X.shape[1], delta="")
+    col[2].metric(label="No. of Training samples", value=X_train.shape[0], delta="")
+    col[3].metric(label="No. of Test samples", value=X_test.shape[0], delta="")
     
     with st.expander('Initial dataset', expanded=True):
         st.dataframe(df, height=210, use_container_width=True)
