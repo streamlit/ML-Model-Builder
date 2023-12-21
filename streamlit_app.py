@@ -220,6 +220,8 @@ if uploaded_file or example_data:
                     y='y_train_pred'
               )
     st.altair_chart(scatter, theme='streamlit')
+
+    df_predictions
     
 # Ask for CSV upload if none is detected
 else:
