@@ -208,21 +208,16 @@ if uploaded_file or example_data:
         st.altair_chart(bars, theme='streamlit')
 
     # Display scatter plot of actual vs predicted values
-    df_predictions = pd.DataFrame([
-                        {'y_train': y_train,
-                         'y_train_pred': y_train_pred,
-                         'y_test': y_test,
-                         'y_test_pred': y_test_pred}
-                     ])
+    df_predictions = pd.concat([y_train, y_train_pred], axis=1)
     
-    scatter = alt.Chart(df_predictions).mark_circle(size=60).encode(
-                    x='y_train',
-                    y='y_train_pred'
-              )
-    st.altair_chart(scatter, theme='streamlit')
+    #scatter = alt.Chart(df_predictions).mark_circle(size=60).encode(
+    #                x='y_train',
+    #                y='y_train_pred'
+    #          )
+    #st.altair_chart(scatter, theme='streamlit')
 
     df_predictions
-    y_train
+
     
 # Ask for CSV upload if none is detected
 else:
