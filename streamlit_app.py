@@ -224,8 +224,8 @@ if uploaded_file or example_data:
         st.dataframe(df_prediction)
     with prediction_col[1]:
         scatter = alt.Chart(df_prediction).mark_circle(size=60).encode(
-                        x=y_train,
-                        y=y_train_pred
+                        x='actual',
+                        y='predicted'
                   )
         st.altair_chart(scatter, theme='streamlit')
 
