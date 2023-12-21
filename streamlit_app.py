@@ -208,6 +208,13 @@ if uploaded_file or example_data:
         st.altair_chart(bars, theme='streamlit')
 
     # Display scatter plot of actual vs predicted values
+    df_predictions = pd.DataFrame([
+                        {'y_train': y_train,
+                         'y_train_pred': y_train_pred,
+                         'y_test': y_test,
+                         'y_test_pred': y_test_pred}
+                     ])
+    
     scatter = alt.Chart(source).mark_circle(size=60).encode(
                     x='Horsepower',
                     y='Miles_per_Gallon',
