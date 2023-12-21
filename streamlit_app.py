@@ -208,7 +208,13 @@ if uploaded_file or example_data:
         st.altair_chart(bars, theme='streamlit')
 
     # Display scatter plot of actual vs predicted values
-    df_predictions = pd.concat([y_train, y_train_pred], axis=1)
+    df_predictions = pd.DataFrame([
+                        {'y_train': list(y_train),
+                         'y_train_pred': list(y_train_pred),
+                         'y_test': list(y_test),
+                         'y_test_pred': list(y_test_pred)
+                        }
+                     ])
     
     #scatter = alt.Chart(df_predictions).mark_circle(size=60).encode(
     #                x='y_train',
