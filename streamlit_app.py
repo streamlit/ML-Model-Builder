@@ -208,10 +208,10 @@ if uploaded_file or example_data:
         st.altair_chart(bars, theme='streamlit')
 
     # Display scatter plot of actual vs predicted values
-    s_y_train = pd.Series(y_train, name='y_train')
-    s_y_train_pred = pd.Series(y_train_pred, name='y_train_pred')
-    s_y_test = pd.Series(y_test, name='y_test')
-    s_y_test_pred = pd.Series(y_test_pred, name='y_test_pred')
+    s_y_train = pd.Series(y_train, name='y_train').reset_index(drop=True)
+    s_y_train_pred = pd.Series(y_train_pred, name='y_train_pred').reset_index(drop=True)
+    s_y_test = pd.Series(y_test, name='y_test').reset_index(drop=True)
+    s_y_test_pred = pd.Series(y_test_pred, name='y_test_pred').reset_index(drop=True)
     df_predictions = pd.DataFrame(data=[s_y_train, s_y_train_pred, s_y_test, s_y_test_pred], index=None).T
     df_predictions
     
