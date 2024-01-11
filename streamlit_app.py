@@ -29,10 +29,6 @@ with st.sidebar:
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file, index_col=False)
       
-    example_data = st.toggle('Load example data')
-    if example_data:
-        df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
-
     # Download example data
     @st.cache_data
     def convert_df(input_df):
@@ -45,6 +41,11 @@ with st.sidebar:
         file_name='delaney_solubility_with_descriptors.csv',
         mime='text/csv',
     )
+
+    # Select example data
+    example_data = st.toggle('Load example data')
+    if example_data:
+        df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
     st.header('2. Set Parameters')
     parameter_split_size = st.slider('Data split ratio (% for Training Set)', 10, 90, 80, 5)
