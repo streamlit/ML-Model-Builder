@@ -23,7 +23,7 @@ with st.expander('About this app'):
 # Sidebar for accepting input parameters
 with st.sidebar:
     # Load data
-    st.header('1. Input data')
+    st.header('1.1. Input data')
 
     st.markdown('**1. Use custom data**')
     uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
@@ -44,7 +44,7 @@ with st.sidebar:
     )
 
     # Select example data
-    st.markdown('**2. Use example data**')
+    st.markdown('**1.2. Use example data**')
     example_data = st.toggle('Load example data')
     if example_data:
         df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
