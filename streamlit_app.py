@@ -13,23 +13,6 @@ st.set_page_config(page_title='ML Model Building', page_icon='🤖')
 st.title('🤖 ML Model Building')
 st.info('This app will allow users to build a machine learning (ML) model in an end-to-end workflow. This encompasses data upload, data pre-processing, ML model building and post-model analysis. ')
 
-# CSS styling
-st.markdown("""
-<style>
-
-[data-testid="stSidebarUserContent"] {
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
-}
-
-[data-testid="block-container"] {
-    padding-top: 1.2rem;
-    padding-bottom: 1.2rem;
-}
-
-</style>
-""", unsafe_allow_html=True)
-
 # Sidebar for accepting input parameters
 with st.sidebar:
     st.header('1. Upload your CSV data')
