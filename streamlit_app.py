@@ -22,13 +22,14 @@ with st.expander('About this app'):
 
 # Sidebar for accepting input parameters
 with st.sidebar:
-    st.header('1. Upload your CSV data')
-    uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
-    example_data = st.toggle('Load example data')
-
     # Load data
+    st.header('1. Upload your CSV data')
+  
+    uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file, index_col=False)
+      
+    example_data = st.toggle('Load example data')
     if example_data:
         df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
 
