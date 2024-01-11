@@ -23,6 +23,7 @@ with st.expander('About this app'):
   st.markdown('''Data sets:
   - 1
   - 2
+  
   Libraries used:
   - Pandas for data wrangling
   - Scikit-learn for building a machine learning model
