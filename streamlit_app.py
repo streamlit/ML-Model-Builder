@@ -9,7 +9,7 @@ import time
 import zipfile
 
 # Page title
-st.set_page_config(page_title='ML Model Building', page_icon='🤖', layout='wide')
+st.set_page_config(page_title='ML Model Building', page_icon='🤖')
 st.title('🤖 ML Model Building')
 st.info('This app will allow users to build a machine learning (ML) model in an end-to-end workflow. This encompasses data upload, data pre-processing, ML model building and post-model analysis. ')
 
