@@ -44,7 +44,7 @@ with st.sidebar:
     )
 
     # Select example data
-    st.markdown('**1. Select example data**')
+    st.markdown('**2. Select example data**')
     example_data = st.toggle('Load example data')
     if example_data:
         df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/delaney_solubility_with_descriptors.csv')
