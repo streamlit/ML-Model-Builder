@@ -13,10 +13,10 @@ st.set_page_config(page_title='ML Model Building', page_icon='🤖')
 st.title('🤖 ML Model Building')
 
 with st.expander('About this app'):
-  st.markdown('**What can this app do**')
+  st.markdown('**What can this app do?**')
   st.info('This app allow users to build a machine learning (ML) model in an end-to-end workflow. Particularly, this encompasses data upload, data pre-processing, ML model building and post-model analysis.')
 
-  st.markdown('**How to use the app**')
+  st.markdown('**How to use the app?**')
   st.warning('To engage with the app, go to the sidebar and 1. Select a data set and 2. Adjust the model parameters by adjusting the various slider widgets. As a result, this would initiate the ML model building process, display the model results as well as allowing users to download the generated models and accompanying data.')
 
   st.markdown('**Under the hood**')
