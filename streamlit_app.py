@@ -22,15 +22,15 @@ with st.expander('About this app'):
   st.markdown('**Under the hood**')
   st.markdown('Data sets:')
   st.code('''- Drug solubility data set
-  - 2
-  ''')
+- 2
+  ''', language='markdown')
   
   st.markdown('Libraries used:')
   st.code('''- Pandas for data wrangling
   - Scikit-learn for building a machine learning model
   - Altair for chart creation
   - Streamlit for user interface
-  ''')
+  ''', language='markdown')
 
 
 # Sidebar for accepting input parameters
