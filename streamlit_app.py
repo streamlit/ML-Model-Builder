@@ -20,12 +20,13 @@ with st.expander('About this app'):
   st.warning('To engage with the app, go to the sidebar and 1. Select a data set and 2. Adjust the model parameters by adjusting the various slider widgets. As a result, this would initiate the ML model building process, display the model results as well as allowing users to download the generated models and accompanying data.')
 
   st.markdown('**Under the hood**')
-  st.markdown('''Data sets:
-  - 1
+  st.markdown('Data sets:')
+  st.code('''- Drug solubility data set
   - 2
+  ''')
   
-  Libraries used:
-  - Pandas for data wrangling
+  st.markdown('Libraries used:')
+  st.code('''- Pandas for data wrangling
   - Scikit-learn for building a machine learning model
   - Altair for chart creation
   - Streamlit for user interface
