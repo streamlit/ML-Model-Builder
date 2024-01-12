@@ -21,8 +21,8 @@ with st.expander('About this app'):
 
   st.markdown('**Under the hood**')
   st.markdown('Data sets:')
-  st.code('''- Drug solubility data set
-- 2
+  st.code('''* Drug solubility data set
+* 2
   ''', language='markdown')
   
   st.markdown('Libraries used:')
