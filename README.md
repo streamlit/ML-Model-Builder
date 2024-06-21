@@ -1,21 +1,19 @@
-# 📦 Streamlit App Starter Kit 
-```
-⬆️ (Replace above with your app's name)
-```
+# 🏗️ ML model builder template
 
-Description of the app ...
+A simple Streamlit app that lets you build simple ML models with scikit-learn. 
 
-## Demo App
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ml-model-builder-template.streamlit.app/)
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ml-model-builder-template.streamlit.app/)
+### How to run it on your own machine
 
-## Section Heading
+1. Install the requirements
 
-This is filler text, please replace this with text for this section.
+   ```
+   $ pip install -r requirements.txt
+   ```
 
-## Further Reading
+2. Run the app
 
-This is filler text, please replace this with a explanatory text about further relevant resources for this repo
-- Resource 1
-- Resource 2
-- Resource 3
+   ```
+   $ streamlit run streamlit_app.py
+   ```
